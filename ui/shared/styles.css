@@ -1,12 +1,43 @@
+:root {
+    --color-light: #dee2e6;
+    --body-color: #1b1b1b;
+    --header-color: #222;
+    --input-bg: #1c1c1c;
+    --input-text: var(--color-light);
+    --input-border: #8d8d8d;
+    --input-focus: var(--color-light);
+    --input-padding: 8px;
+    --input-height: 40px;
+    --link-color: #1ed2ff;
+    --font-color: var(--color-light);
+    --border-radius: 0.375rem;
+    --padding: 1rem 2rem;
+    --padding-large: 2rem;
+    --max-content-width: 800px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
-    background-color: #222;
-    color: white;
-    padding: 8px;
-    font-family: Lato,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    background-color: var(--body-color);
+    color: var(--font-color);
+    font-family: Lato, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 a {
-    color: #1ed2ff;
+    color: var(--link-color);
 }
 
 ol {
@@ -14,42 +45,64 @@ ol {
     list-style-type: none;
 }
 
-#header, #footer {
-    position: sticky;
+header, footer {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
-    background-color: #222;
-    padding: 8px;
-}
-
-#menu > #instance-select-div {
-    float: right;
-    clear: both;
+    padding: var(--padding);
     width: 100%;
-    max-width: 256px;
 }
 
-#header {
+header {
+    background-color: var(--header-color);
+    box-shadow: 0px 2px 2px 2px #181818e3;
+    position: sticky;
     top: 0;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
-#footer {
-    bottom: 0;
+footer {
     flex-wrap: nowrap;
-    justify-content: center;  
+    justify-content: center;
 }
 
-#header > * {
+header>* {
     margin: 8px 0;
+}
+
+#main-search {
+    margin: 15% auto;
+    max-width: 768px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "Logo instances"
+        "search search";
+}
+
+#main-search #logo {
+    grid-area: Logo;
+}
+
+#main-search #instance-selector {
+    grid-area: instances;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+}
+
+#main-search #search-form {
+    grid-area: search;
 }
 
 #results {
     width: 100%;
     max-width: 768px;
+    padding: var(--padding);
 }
 
 #search-form, #submit {
@@ -61,21 +114,21 @@ ol {
     width: 100%;
 }
 
-#content {
-    margin: 15% auto;
-    max-width: 768px;
-}
-
 #search-form input {
     margin: 8px 0;
 }
 
 input, select {
-    padding: 8px;
-    border: 1px solid white;
-    border-radius: 16px;  
-    background-color: white;
-    color: black;
+    padding: var(--input-padding);
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+}
+
+input:focus-visible {
+    outline: none;
+    border-color: var(--input-focus);
 }
 
 label {
@@ -83,8 +136,10 @@ label {
 }
 
 input[type="search"] {
-    padding: 9px 4px 9px 40px;
-    background: white url("../imgs/search.svg") no-repeat 13px center;
+    font-size: 1.2rem;
+    padding: var(--input-padding);
+    padding-left: 40px;
+    background: var(--input-bg) url("../imgs/search.svg") no-repeat 13px center;
 }
 
 #instance-select {
@@ -107,16 +162,16 @@ input[type="search"] {
     margin: 8px;
 }
 
-#logo > span {
+#logo>span {
     font-size: 3rem;
     margin: 16px;
 }
 
-#logo > img {
+#logo>img {
     vertical-align: bottom;
 }
 
-#logo > img:nth-of-type(2) {
+#logo>img:nth-of-type(2) {
     margin-left: -80px;
     margin-bottom: 12px;
     width: 64px;
@@ -127,12 +182,12 @@ input[type="search"] {
     padding: 8px;
 }
 
-.post-citation > img {
+.post-citation>img {
     width: 16px;
     height: 16px;
     margin: 4px;
     vertical-align: middle;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
 }
 
 .post-name {
@@ -143,19 +198,236 @@ input[type="search"] {
     margin: 4px;
 }
 
-.post-body > .search-term {
+.post-body>.search-term {
     font-weight: bold;
 }
 
-.selectize-input {
-    border-radius: 16px;
-    padding-right: 40px;
+/* Nice Select2 */
+
+.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+    background-color: #5c5c5c;
 }
 
-.selectize-input.input-active {
-    border-radius: 16px;
+.nice-select {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background-color: var(--input-bg);
+    border-radius: var(--border-radius);
+    border: solid 1px var(--input-border);
+    box-sizing: border-box;
+    clear: both;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    height: var(--input-height);
+    line-height: calc(var(--input-height) - 2px);
+    outline: none;
+    padding-left: 18px;
+    padding-right: 30px;
+    position: relative;
+    text-align: left !important;
+    transition: all .2s ease-in-out;
+    user-select: none;
+    white-space: nowrap;
+    width: auto
 }
 
-.selectize-dropdown {
-    border-radius: 16px;
+.nice-select:active, .nice-select.open, .nice-select:focus {
+    border-color: var(--input-focus);
+}
+
+.nice-select:after {
+    border-bottom: 2px solid #999;
+    border-right: 2px solid #999;
+    content: "";
+    display: block;
+    height: 5px;
+    margin-top: -4px;
+    pointer-events: none;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform-origin: 66% 66%;
+    transform: rotate(45deg);
+    transition: all .15s ease-in-out;
+    width: 5px
+}
+
+.nice-select.open:after {
+    transform: rotate(-135deg)
+}
+
+.nice-select.open .nice-select-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateY(0)
+}
+
+.nice-select.disabled {
+    border-color: #ededed;
+    color: #999;
+    pointer-events: none
+}
+
+.nice-select.disabled:after {
+    border-color: #ccc
+}
+
+.nice-select.wide {
+    width: 100%
+}
+
+.nice-select.wide .nice-select-dropdown {
+    left: 0 !important;
+    right: 0 !important
+}
+
+.nice-select.right {
+    float: right
+}
+
+.nice-select.right .nice-select-dropdown {
+    left: auto;
+    right: 0
+}
+
+.nice-select.small {
+    font-size: 12px;
+    height: 36px;
+    line-height: 34px
+}
+
+.nice-select.small:after {
+    height: 4px;
+    width: 4px
+}
+
+.nice-select.small .option {
+    line-height: 34px;
+    min-height: 34px
+}
+
+.nice-select .nice-select-dropdown {
+    margin-top: 4px;
+    background-color: var(--input-bg);
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(68, 68, 68, .11);
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transform-origin: 50% 0;
+    transform: scale(0.75) translateY(19px);
+    transition: all .2s cubic-bezier(0.5, 0, 0, 1.25), opacity .15s ease-out;
+    z-index: 9;
+    opacity: 0;
+}
+
+.nice-select .list {
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0;
+    max-height: 210px;
+    overflow-y: auto
+}
+
+.nice-select .list:hover .option:not(:hover) {
+    background-color: rgba(0, 0, 0, 0) !important
+}
+
+.nice-select .option {
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 1.2;
+    list-style: none;
+    outline: none;
+    padding: 10px;
+    text-align: left;
+    transition: all .2s;
+    white-space: break-spaces;
+}
+
+.nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
+    background-color: #5c5c5c
+}
+
+.nice-select .option.selected {
+    font-weight: bold
+}
+
+.nice-select .option.disabled {
+    background-color: rgba(0, 0, 0, 0);
+    color: #999;
+    cursor: default
+}
+
+.nice-select .optgroup {
+    font-weight: bold
+}
+
+.no-csspointerevents .nice-select .nice-select-dropdown {
+    display: none
+}
+
+.no-csspointerevents .nice-select.open .nice-select-dropdown {
+    display: block
+}
+
+.nice-select .list::-webkit-scrollbar {
+    width: 0
+}
+
+.nice-select .has-multiple {
+    white-space: inherit;
+    height: auto;
+    padding: 7px 12px;
+    min-height: 36px;
+    line-height: 22px
+}
+
+.nice-select .has-multiple span.current {
+    border: 1px solid #ccc;
+    background: #5c5c5c;
+    padding: 0 10px;
+    border-radius: 3px;
+    display: inline-block;
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 3px;
+    margin-right: 3px
+}
+
+.nice-select .has-multiple .multiple-options {
+    display: block;
+    line-height: 24px;
+    padding: 0
+}
+
+.nice-select .nice-select-search-box {
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--input-padding);
+    pointer-events: none;
+    border-radius: 5px 5px 0 0
+}
+
+.nice-select .nice-select-search {
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    color: #444;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 7px 12px;
+    margin: 0 10px 0 0;
+    width: 100%;
+    min-height: 36px;
+    line-height: 22px;
+    height: auto;
+    outline: 0 !important;
+    font-size: 14px
 }

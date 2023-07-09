@@ -1,7 +1,7 @@
 var home_instance = null;
 
 function populateInstances() {
-    fetchJson("/instances", result => {
+    fetchJson("https://search-lemmy.com/instances", result => {
 
         home_instance = getCookie("home-instance") || result[0].actor_id;
         if(!result.map(instance => instance.actor_id).includes(home_instance)) {
@@ -19,9 +19,7 @@ function populateInstances() {
                 select.append(option);
             })
         // $("#instance-select").val(home_instance);
-        $("#instance-select").selectize({
-            sortField: 'text'
-        });
+        NiceSelect.bind(document.getElementById("instance-select"), {searchable: true, placeholder: 'Select your home instance', searchtext: 'Search for instances'});
     })
 }
 
@@ -52,7 +50,7 @@ function onSearch() {
 }
 
 function getVersion() {
-    fetchJson("/version", result => {
+    fetchJson("https://search-lemmy.com/version", result => {
         $("#version").text(result.version);
     });
 }
@@ -89,3 +87,4 @@ $(document).ready(function() {
         onReady();
     }
 });
+

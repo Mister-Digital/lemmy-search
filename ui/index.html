@@ -1,40 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Lemmy Search</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" />
-        <link rel="stylesheet" href="/shared/styles.css" />
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
-        <script type="text/javascript" src="/shared/rest.js"></script>
-        <script type="text/javascript" src="/shared/cookies.js"></script>
-        <script type="text/javascript" src="/shared/common.js"></script>
-        <script type="text/javascript" src="/main.js"></script>
-    </head>
-    <body>
-        <div id="menu">
-            <div id="instance-select-div">
-                <select id="instance-select">
-              
-                </select>
-            </div>
+
+<head>
+    <title>Lemmy Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/shared/styles.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" src="/shared/rest.js"></script>
+    <script type="text/javascript" src="/shared/cookies.js"></script>
+    <script type="text/javascript" src="/shared/common.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
+    <script type="text/javascript" src="/shared/nice-select2.js"></script>
+</head>
+
+<body class="homepage">
+    <div id="menu">
+
+    </div>
+    <main id="main-search">
+        <div id="logo">
+            <img src="imgs/lemmy.svg" width="128" height="128" />
+            <img src="imgs/search.svg" />
+            <span>Lemmy</span>
         </div>
-        <div id="content">
-            <div id="logo">
-                <img src="imgs/lemmy.svg" width="128" height="128" />
-                <img src="imgs/search.svg" />
-                <span>Lemmy</span>
-            </div>
-            <form id="search-form">
-                <input type="search" id="search" required />
-                <input type="submit" id="submit" value="Search" />
-            </form>
+        <div id="instance-selector">
+            <select id="instance-select">
+
+            </select>
         </div>
-        <div id="footer">
-            <a href="https://github.com/marsara9/lemmy-search">GitHub</a>
-            <span> | </span>
-            <span id="version">v0.0.0</span>
-        </div>
-    </body>
+        <form role="search" id="search-form">
+            <input type="search" id="search" required placeholder="Search Lemmy" />
+            <input type="submit" id="submit" value="Search" />
+        </form>
+    </main>
+    <footer id="footer">
+        <a href="https://github.com/marsara9/lemmy-search">GitHub</a>
+        <span> | </span>
+        <span id="version">v0.0.0</span>
+    </footer>
+</body>
+
 </html>

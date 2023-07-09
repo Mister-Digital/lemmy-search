@@ -5,7 +5,7 @@ function checkQueryParameters() {
 }
 
 function query(queryString) {
-    fetchJson("/search" + queryString, result => {
+    fetchJson("https://search-lemmy.com/search" + queryString, result => {
 
         let response_time = Math.round((result.time_taken.secs + (result.time_taken.nanos / 1_000_000_000)) * 100) / 100;
 
