@@ -14,24 +14,32 @@
 </head>
 
 <body class="homepage">
-    <div id="menu">
+    <main>
+        <div id="main-search">
+            <div id="logo">
+                <img src="imgs/lemmy-search.svg" width="100" height="auto" />
+                <span>Lemmy</span>
+            </div>
+            <div id="instance-selector">
+                <select id="instance-select">
 
-    </div>
-    <main id="main-search">
-        <div id="logo">
-            <img src="imgs/lemmy.svg" width="128" height="128" />
-            <img src="imgs/search.svg" />
-            <span>Lemmy</span>
+                </select>
+            </div>
+            <form role="search" id="search-form">
+                <input type="search" id="search" required placeholder="Search Lemmy" />
+                <input type="submit" id="submit" class="button" value="Search" />
+            </form>
         </div>
-        <div id="instance-selector">
-            <select id="instance-select">
-
-            </select>
+        <label for="showTips" class="show-tips">Search tips</label>
+        <input type="checkbox" id="showTips" />
+        <div class="tips">
+            Filters you can add to your search query:<br>
+            <ul>
+                <li>instance: &lt;domain&gt;</li>
+                <li>community: !&lt;name&gt;@&lt;domain&gt;</li>
+                <li>author: @&lt;name&gt;@&lt;domain&gt;</li>
+            </ul>
         </div>
-        <form role="search" id="search-form">
-            <input type="search" id="search" required placeholder="Search Lemmy" />
-            <input type="submit" id="submit" value="Search" />
-        </form>
     </main>
     <footer id="footer">
         <a href="https://github.com/marsara9/lemmy-search">GitHub</a>

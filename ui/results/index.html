@@ -14,7 +14,10 @@
 </head>
 
 <body class="results">
-  <header>
+  <header class="search-box">
+    <div id="logo">
+      <a href="/"><img src="../imgs/lemmy-search.svg" /></a>
+    </div>
     <form id="search-form">
       <input type="search" id="search" />
     </form>
@@ -22,12 +25,30 @@
       <select id="instance-select">
       </select>
     </div>
-    <span id="response-time"></span>
+    <div class="info">
+      <div id="response-time"></div>
+      <div class="tips-section">
+        <label for="showTips" class="show-tips">Tips</label>
+        <input type="checkbox" id="showTips" />
+        <div class="tips">
+          Filters you can add to your search query:<br>
+          <ul>
+            <li>instance: &lt;domain&gt;</li>
+            <li>community: !&lt;name&gt;@&lt;domain&gt;</li>
+            <li>author: @&lt;name&gt;@&lt;domain&gt;</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    
   </header>
-  <main id="results">
-
+  <main>
+    <div id="results">
+    </div>
+    <div id="page-control">
   </main>
-  <div id="page-control">
+
 
   </div>
   <footer>
